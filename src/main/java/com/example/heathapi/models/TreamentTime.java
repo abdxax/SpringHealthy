@@ -23,12 +23,14 @@ public class TreamentTime {
     private Integer treamsId;
     @NotEmpty(message = "Cant be null")
     //@Column(columnDefinition = "varchar(30) not null")
-    @Temporal(TemporalType.TIMESTAMP)
-    @Column(nullable = false)
-    private Date time;
-
-    @PrePersist
-    private void onCreate() {
-        time = new Date();
-    }
+//    @Temporal(TemporalType.TIMESTAMP)
+//    @Column(nullable = false)
+//    private Date time;
+//
+//    @PrePersist
+//    private void onCreate() {
+//        time = new Date();
+//    }
+    @Column(columnDefinition = "varchar(30) not null")
+    private String time;
 }

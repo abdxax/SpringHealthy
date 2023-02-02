@@ -19,5 +19,6 @@ public class TreamentFollow {
     @NotNull(message = "Cant be null")
     //@Column(columnDefinition = " not null",name = "treamentTimeIds")
     private Integer treamentTimeId;
+
     private Boolean IsTake;
 }

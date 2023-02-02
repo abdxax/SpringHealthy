@@ -1,0 +1,47 @@
+Diseases: الامراض
+id
+name
+-------------------
+following: التابعين
+id
+userId
+patientId
+-------------------
+Patient: المرضى
+id
+userId
+-------------------
+patientDiseases: أمراض المرضى
+id
+patientId
+diseasesId
+-------------------
+Result: النتائج
+id
+patientId
+result
+dataTime
+--------------------
+users: المستخدم
+id
+name
+email
+password
+phone
+-------------------
+TreamentFollow: متابعة الدواء
+id
+treamentTimeId
+IsTake
+-------------------
+Treament:الدواء
+id
+patientId
+freq
+times
+-------------------
+treamentTime: وقت الدواء
+id
+treamsId
+time
+--------------------

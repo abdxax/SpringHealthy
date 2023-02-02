@@ -10,4 +10,5 @@ import java.util.List;
 public interface FollowingRepositry extends JpaRepository<Following,Integer> {
     Following findByIdEquals(Integer id);
     List<Following> findByUserIdEquals(Integer userId);
+    public Following findByPatientIdEquals(Integer id);
 }

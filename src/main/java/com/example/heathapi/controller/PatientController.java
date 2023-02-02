@@ -1,10 +1,8 @@
 package com.example.heathapi.controller;
 
-import com.example.heathapi.models.Patient;
-import com.example.heathapi.models.PatientModel;
-import com.example.heathapi.models.Result;
-import com.example.heathapi.models.User;
+import com.example.heathapi.models.*;
 import com.example.heathapi.repastory.PatientRepositrt;
+import com.example.heathapi.repastory.ResultRpositry;
 import com.example.heathapi.services.PatientService;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.validation.Valid;
@@ -59,6 +57,11 @@ public class PatientController {
     public ResponseEntity getAllResultPatien(@PathVariable Integer id,@PathVariable Integer dis){
         List<Result> results=patientService.AllResltDes(id,dis);
         return ResponseEntity.status(200).body(results);
+    }
+    @GetMapping("/report/{id}")
+    public ResponseEntity getReport(@PathVariable Integer id){
+        ReportPatient reportPatient=patientService.report(id);
+        return ResponseEntity.status(200).body(reportPatient);
     }
 
 

@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @RestController
@@ -40,5 +41,14 @@ public class TreamentTimeController {
             return  ResponseEntity.status(400).body("The id is not correct");
         }
         return ResponseEntity.status(200).body("Delete user done!");
+    }
+
+    @GetMapping("/getTreTime/{id}/{time}")
+    public ResponseEntity getTreTime(@PathVariable Integer id, @PathVariable String time) throws ParseException, ParseException {
+        String ressult = treamentTimeService.getNotification(id,time);
+        if (ressult == null){
+            return  ResponseEntity.status(400).body("The id is not correct");
+        }
+        return ResponseEntity.status(200).body(ressult);
     }
 }

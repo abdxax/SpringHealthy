@@ -1,16 +1,12 @@
 package com.example.heathapi.services;
 
 import com.example.heathapi.handlingErrors.ApiException;
-import com.example.heathapi.models.Patient;
-import com.example.heathapi.models.PatientDiseases;
-import com.example.heathapi.models.Result;
-import com.example.heathapi.models.User;
-import com.example.heathapi.repastory.PatienDiseasesRepositry;
-import com.example.heathapi.repastory.PatientRepositrt;
-import com.example.heathapi.repastory.ResultRpositry;
+import com.example.heathapi.models.*;
+import com.example.heathapi.repastory.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -20,6 +16,9 @@ public class PatientService {
     private final PatientRepositrt patientRepositrt;
     private final PatienDiseasesRepositry patienDiseasesRepositry;
     private final ResultRpositry resultRpositry;
+    private final UserRepstory userRepstory;
+    private final DiseasesRespotry diseasesRespotry;
+    private final TreamentRepositry treamentRepositry;
     public List<Patient> patients(){
         return patientRepositrt.findAll();
     }
@@ -74,6 +73,31 @@ public class PatientService {
         }
         List<Result> results=resultRpositry.findByPatientDiseasesIdEquals(diseases.getId());
           return  results;
+    }
+
+    public ReportPatient report(Integer patId){
+        Patient p=patientRepositrt.findByIdEquals(patId);
+        if(p==null){
+            throw new ApiException("The id is not correct ");
+        }
+        User user=userRepstory.findByIdEquals(p.getUserId());
+        if(user==null){
+            throw new ApiException("data not fount ");
+        }
+        List<PatientDiseases> patientDiseases=patienDiseasesRepositry.findByPatientIdEquals(p.getId());
+        if(patientDiseases.size()<0){
+            throw new ApiException("This patient doesn't have any diseases ");
+        }
+        List<Diseases> diseases=new ArrayList<>();
+        for(PatientDiseases d:patientDiseases){
+            diseases.add(diseasesRespotry.findByIdEquals(d.getDiseasesId()));
+        }
+
+        List<Treament> treamentList=treamentRepositry.findByPatientIdEquals(p.getId());
+
+        return new ReportPatient(user,diseases,treamentList);
+
+
     }
 
 

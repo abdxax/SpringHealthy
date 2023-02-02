@@ -8,4 +8,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TreamentTimeRepositry extends JpaRepository<TreamentTime,Integer> {
     TreamentTime findByIdEquals(Integer id);
+    public TreamentTime findByTreamsIdEquals(int id);
 }
