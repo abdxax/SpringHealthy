@@ -18,13 +18,23 @@ public class Result {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull(message = "The name can not be null or empty")
-    @Column(columnDefinition = "not null")
+    //@Column(columnDefinition = "not null")
     private Integer patientId;
     @NotNull(message = "The name can not be null or empty")
-    @Column(columnDefinition = "varchar(100) not null")
-    private String result;
+    //@Column(columnDefinition = "not null")
+    private Integer patientDiseasesId;
     @NotNull(message = "The name can not be null or empty")
-    @Column(columnDefinition = "not null")
+    //@Column(columnDefinition = "varchar(100) not null")
+    private String result;
+
+    //@Column(columnDefinition = "not null")
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(nullable = false)
     private Date dataTime;
+
+    @PrePersist
+    private void onCreate() {
+        dataTime = new Date();
+    }
 
 }

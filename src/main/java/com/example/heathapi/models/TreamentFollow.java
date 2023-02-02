@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Columns;
 
 @Entity
 @Table(name = "treamentFollow")
@@ -16,7 +17,7 @@ public class TreamentFollow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull(message = "Cant be null")
-    @Column(columnDefinition = " not null")
+    //@Column(columnDefinition = " not null",name = "treamentTimeIds")
     private Integer treamentTimeId;
     private Boolean IsTake;
 }

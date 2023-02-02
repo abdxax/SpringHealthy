@@ -17,10 +17,10 @@ public class Following {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull(message = "The userId can not be null or empty")
-    @Column(columnDefinition = " not null")
+   // @Column(columnDefinition = "not null")
     private Integer userId;
     @NotNull(message = "The patient Id can not be null or empty")
-    @Column(columnDefinition = " not null")
+   // @Column(columnDefinition = " not null")
     private Integer patientId;
 
 }

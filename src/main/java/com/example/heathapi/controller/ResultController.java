@@ -20,7 +20,7 @@ public class ResultController {
         return resultService.results();
     }
     @PostMapping("/addResult")
-    public ResponseEntity addUser(@RequestBody @Valid Result result){
+    public ResponseEntity addResult(@RequestBody @Valid Result result){
         resultService.addResult(result);
         return ResponseEntity.status(200).body("Add Result done!");
     }

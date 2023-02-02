@@ -16,10 +16,10 @@ public class PatientDiseases {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull(message = "The name can not be null or empty")
-    @Column(columnDefinition = "not null")
+   // @Column(columnDefinition = "not null")
     private Integer patientId;
     @NotNull(message = "The name can not be null or empty")
-    @Column(columnDefinition = "not null")
+    //@Column(columnDefinition = "not null")
     private Integer diseasesId;
 
 }
