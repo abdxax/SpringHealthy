@@ -2,6 +2,7 @@ package com.example.heathapi.controller;
 
 import com.example.heathapi.models.Patient;
 import com.example.heathapi.models.PatientModel;
+import com.example.heathapi.models.Result;
 import com.example.heathapi.models.User;
 import com.example.heathapi.repastory.PatientRepositrt;
 import com.example.heathapi.services.PatientService;
@@ -44,9 +45,9 @@ public class PatientController {
         }
         return ResponseEntity.status(200).body("Delete user done!");
     }
-@GetMapping("/hba1c/{id}")
-    public ResponseEntity getHbA1c(@PathVariable Integer id,@RequestBody @Valid PatientModel patientModel){
-        double res=patientService.hba1c(id,patientModel.getStart(),patientModel.getEnd());
+@GetMapping("/hba1c/{id}/{dis}")
+    public ResponseEntity getHbA1c(@PathVariable Integer id,@PathVariable Integer dis,@RequestBody @Valid PatientModel patientModel){
+        double res=patientService.hba1c(id,dis,patientModel.getStart(),patientModel.getEnd());
         if(res==0.0){
             return ResponseEntity.status(400).body("No Found any data ");
         }
@@ -54,4 +55,11 @@ public class PatientController {
 
 
     }
+    @GetMapping("/allResult/{id}/{dis}")
+    public ResponseEntity getAllResultPatien(@PathVariable Integer id,@PathVariable Integer dis){
+        List<Result> results=patientService.AllResltDes(id,dis);
+        return ResponseEntity.status(200).body(results);
+    }
+
+
 }

@@ -41,4 +41,10 @@ public class UserController {
         return ResponseEntity.status(200).body("Delete user done!");
     }
 
+    @GetMapping("/getAllFollowing/{id}")
+    public ResponseEntity getAllFollow(@PathVariable Integer id){
+        List<User> users=userServies.getFollowing(id);
+        return ResponseEntity.status(200).body(users);
+    }
+
 }

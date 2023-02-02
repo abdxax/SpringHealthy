@@ -1,5 +1,6 @@
 package com.example.heathapi.services;
 
+import com.example.heathapi.handlingErrors.ApiException;
 import com.example.heathapi.models.Patient;
 import com.example.heathapi.models.PatientDiseases;
 import com.example.heathapi.models.Result;
@@ -47,13 +48,13 @@ public class PatientService {
         return true;
     }
 
-    public Double hba1c(Integer patienId, Date start, Date end){
-        PatientDiseases patientDiseases=patienDiseasesRepositry.findByPatientIdEquals(patienId);
+    public Double hba1c(Integer patienId,Integer diss, Date start, Date end){
+        PatientDiseases patientDiseases=patienDiseasesRepositry.findByPatientIdEqualsAndDiseasesIdEquals(patienId,diss);
         if(patientDiseases==null){
             return 0.0;
         }
         List<Result> results=resultRpositry.findByDate(patientDiseases.getId(),start,end);
-        if(results.size()<0){
+        if(results.size()<=0){
             return 0.0;
         }
         double result=0;
@@ -64,6 +65,15 @@ public class PatientService {
         double finalResult=result/results.size();
         double hab=2.6+(0.03*finalResult);
         return hab;
+    }
+
+    public List<Result> AllResltDes(Integer idPat,Integer des){
+        PatientDiseases diseases=patienDiseasesRepositry.findByPatientIdEqualsAndDiseasesIdEquals(idPat,des);
+        if(diseases==null){
+            throw new ApiException("The data not fount ");
+        }
+        List<Result> results=resultRpositry.findByPatientDiseasesIdEquals(diseases.getId());
+          return  results;
     }
 
 

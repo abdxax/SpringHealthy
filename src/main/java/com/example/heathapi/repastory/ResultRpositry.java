@@ -11,7 +11,8 @@ import java.util.List;
 @Repository
 public interface ResultRpositry extends JpaRepository<Result,Integer> {
     Result findByIdEquals(Integer id);
-    Result findByPatientDiseasesIdEquals(Integer id);
-    @Query(value = "select u from Result  u  where u.patientDiseasesId=?1 and u.dataTime between  ?2 and ?3")
-    List<Result> findByDate(Integer id, Date start,Date end);
+    List<Result> findByPatientDiseasesIdEquals(Integer id);
+    @Query(value = "select u from Result  u  where u.patientDiseasesId=?1  and u.dataTime between  ?2 and ?3")
+    List<Result> findByDate(Integer patientDiseasesId, Date start,Date end);
+
 }

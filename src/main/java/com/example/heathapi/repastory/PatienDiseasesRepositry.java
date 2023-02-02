@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PatienDiseasesRepositry extends JpaRepository<PatientDiseases,Integer> {
     PatientDiseases findByIdEquals(Integer id);
-    PatientDiseases findByPatientIdEquals(Integer id);
+    PatientDiseases findByPatientIdEqualsAndDiseasesIdEquals(Integer PATIENTID,Integer disId);
 }
